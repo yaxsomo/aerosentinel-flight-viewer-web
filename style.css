@@ -1,0 +1,529 @@
+body {
+    background-image: url('assets/images/Background.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+
+/* Custom Font Styling */
+
+@font-face {
+    font-family: "Aquire";
+    src: url("./assets/fonts/Aquire.otf") format("truetype");
+}
+h2.customfont {
+    font-family: "Aquire", Verdana, Tahoma;
+    color: white;
+    font-size: 1.3vw;
+}
+
+p.customfont {
+  font-family: "Aquire", Verdana, Tahoma;
+  color: white;
+  font-size: 0.6vw;
+}
+
+/* Grid Layout of the webpage */
+
+.container {  display: grid;
+    grid-template-columns: 5% 5% 5% 5% 5% 9.5% 0.5% 0.5% 9.5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5% 5%;
+    grid-template-rows: 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25% 6.25%;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      ". . . . . . . . . . . . . . . . . . . ."
+      ". Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area . Flight-Card-Area Flight-Card-Area Flight-Card-Area Flight-Card-Area Flight-Card-Area ."
+      ". Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area Title-Area . Flight-Card-Area Flight-Card-Area Flight-Card-Area Flight-Card-Area Flight-Card-Area ."
+      ". . . . . . . . . . . . . . . . . . . ."
+      ". Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area . . Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area . Current-Data-Area Current-Data-Area Current-Data-Area Current-Data-Area Current-Data-Area ."
+      ". Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area . . Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area . Current-Data-Area Current-Data-Area Current-Data-Area Current-Data-Area Current-Data-Area ."
+      ". Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area . . Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area . Current-Data-Area Current-Data-Area Current-Data-Area Current-Data-Area Current-Data-Area ."
+      ". Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area . . Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area . Current-Data-Area Current-Data-Area Current-Data-Area Current-Data-Area Current-Data-Area ."
+      ". Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area . . Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area . Current-Data-Area Current-Data-Area Current-Data-Area Current-Data-Area Current-Data-Area ."
+      ". Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area . . Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area . . . . . . ."
+      ". Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area . . Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area . Upload-Area Upload-Area . Download-Area Download-Area ."
+      ". Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area Trajectory-Viewer-Area . . Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area Live-Viewer-Area . Upload-Area Upload-Area . Download-Area Download-Area ."
+      ". . . . . . . . . . . . . . . . . . . ."
+      ". Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area ."
+      ". Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area Timeline-Area ."
+      ". . . . . . . . . . . . . . . . . . . .";
+  }
+
+.Timeline-Area {
+    grid-area: Timeline-Area;
+    align-content: center;
+
+}
+
+.Download-Area {
+    grid-area: Download-Area;
+    align-content: center;
+
+}
+
+.Upload-Area {
+    grid-area: Upload-Area;
+    align-content: center;
+
+}
+
+.Current-Data-Area {
+    grid-area: Current-Data-Area;
+}
+
+.Flight-Card-Area {
+    grid-area: Flight-Card-Area;
+}
+
+.Live-Viewer-Area {
+    grid-area: Live-Viewer-Area;
+}
+
+.Trajectory-Viewer-Area {
+    grid-area: Trajectory-Viewer-Area;
+    align-content: center;
+    text-align: center;
+
+}
+
+.Title-Area {
+    grid-area: Title-Area;
+    align-content: center;
+    /* justify-content: center;  */
+}
+
+
+html,
+body,
+.container {
+    height: 100%;
+    margin: 0;
+}
+
+/* For presentation only, no need to copy the code below */
+
+.container * {
+    border: 1px solid transparent;
+    position: relative;
+}
+
+.container *:after {
+    /* content: attr(class); */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Logo styling */
+
+.logo {
+    max-width: 100%;
+    max-height: 70%; /* To maintain the aspect ratio */
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+
+/* Viewers Styling */
+
+.viewer {
+  height: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background-color: #555;
+  border-radius: 5%;
+  overflow: hidden; /* Added to ensure content does not overflow the container */
+}
+
+
+
+/* Current Data Panel Styling */
+
+.current-data{
+  height: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  /* padding: 20px; */
+  text-align: center;
+
+
+  background-color: #555;
+  border-radius: 5%;
+}
+
+
+.flight-events-container {
+  margin-top: 10px;
+}
+
+.flight-event {
+  background-color: #ffcc00;
+  color: #000;
+  padding: 8px 12px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  font-weight: bold;
+  animation: fadein 0.5s, fadeout 0.5s 4.5s; /* Total display time: 5s */
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Flight Card Panel Styling */
+
+
+.flight-card{
+  height: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  /* padding: 20px; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: repeat(2, auto); /* 2 rows */
+  gap: 10px; /* Optional: Add some space between the grid items */
+  text-align: center;
+  background-color: #555;
+  border-radius: 5%;
+}
+
+.flight-card-text{
+  height: 50%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: small;
+  margin: 1;
+}
+
+/* Timeline Styling */
+.timeline {
+    height: 80px;
+    background-color: #2e2e2e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.ruler-container {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+    background-color: #444;
+    border-radius: 5px;
+}
+
+.time-labels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px; /* Height for the time labels */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
+  color: #fff;
+  font-size: 12px;
+}
+
+.ruler {
+  position: absolute;
+  top: 20px; /* Adjusted to make space for time labels */
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #ffcccc;
+}
+
+.time-label {
+  position: absolute;
+  height: 20px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.cursor {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: red;
+    z-index: 10;
+}
+
+/* Upload Area Styling */
+
+
+.uploadContainer {
+    position: relative;
+  }
+  
+  .uploadDropzone { 
+    border:thin dashed #aaa;
+    /* padding:40px;  */
+    text-align: center; 
+    border-radius: 5px;
+  }
+  
+  .uploadDropzone .cloud { 
+    font-size: 48px;
+    line-height: 1;
+    opacity: .5;
+  }
+  
+  .uploadMessage {
+    /* margin-top:.5rem; */
+  }
+  
+  .uploadProgress {
+    /* margin-top:.5rem; */
+    background-color: #fff;
+    border: thin solid #aaa;
+    border-radius: 3px;   
+  }
+  
+  .uploadProgress:empty {
+    background: none; margin:0; border:0;
+  }
+  
+  .uploadProgress .wrapper {
+    position: relative;
+    background-color: #fff;
+    white-space: nowrap;
+    border-bottom: thin solid #d2d2d2;
+    /* line-height: 35px;  */
+    padding: 0 0 0 10px; 
+  }
+  
+  .uploadProgress .wrapper:last-child {
+    border-bottom: 0;
+  }
+  
+  .uploadProgress .wrapper:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  .uploadProgress .name {
+    display: block;
+    float: left;
+    white-space: nowrap;
+    /* max-width: 300px; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .uploadProgress .size {
+    display: block;
+    float: left;
+    white-space: nowrap;
+    color: #aaa;
+    /* padding-left: 5px; */
+  }
+  
+  .uploadProgress .size:before {
+    content: "(";
+  }
+  
+  .uploadProgress .size:after {
+    content: ")";
+  }
+  
+  .uploadProgress .progress {
+    display: block;
+    float: right;
+    /* width: 180px; */
+    /* margin-top: 15px; */
+    /* margin-right:10px */
+  }
+  
+  .uploadProgress .deleteAttachment {
+    display: block;
+    float: right;
+    padding: 0;
+    background-color: transparent !important;
+    border: 0 !important;
+    background-image: none;
+    line-height:inherit;
+  }
+  
+  .deleteAttachment:after {
+    content: '\00D7';
+    display: block;
+    line-height: inherit;
+    /* width: 35px; */
+    text-align: center;
+    color: rgba(0, 0, 0, .3);
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .uploadProgress .wrapper.success {
+    color:green;
+  }
+  .uploadProgress .wrapper.error {
+    color:red;
+  }
+  
+  .uploadProgress .error .progress { display:none; }
+  .uploadProgress .success .progress { display:none; }
+
+
+
+  /* Download Area Styling */
+
+  
+.downloadContainer {
+  position: relative;
+}
+
+.downloadDropzone { 
+  border:thin dashed #aaa;
+  /* padding:40px;  */
+  text-align: center; 
+  border-radius: 5px;
+}
+
+.downloadDropzone .cloud { 
+  font-size: 48px;
+  line-height: 1;
+  opacity: .5;
+}
+
+.downloadMessage {
+  /* margin-top:.5rem; */
+}
+
+.downloadProgress {
+  /* margin-top:.5rem; */
+  background-color: #fff;
+  border: thin solid #aaa;
+  border-radius: 3px;   
+}
+
+.downloadProgress:empty {
+  background: none; margin:0; border:0;
+}
+
+.downloadProgress .wrapper {
+  position: relative;
+  background-color: #fff;
+  white-space: nowrap;
+  border-bottom: thin solid #d2d2d2;
+  /* line-height: 35px;  */
+  padding: 0 0 0 10px; 
+}
+
+.downloadProgress .wrapper:last-child {
+  border-bottom: 0;
+}
+
+.downloadProgress .wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.downloadProgress .name {
+  display: block;
+  float: left;
+  white-space: nowrap;
+  /* max-width: 300px; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.downloadProgress .size {
+  display: block;
+  float: left;
+  white-space: nowrap;
+  color: #aaa;
+  /* padding-left: 5px; */
+}
+
+.downloadProgress .size:before {
+  content: "(";
+}
+
+.downloadProgress .size:after {
+  content: ")";
+}
+
+.downloadProgress .progress {
+  display: block;
+  float: right;
+  /* width: 180px; */
+  /* margin-top: 15px; */
+  /* margin-right:10px */
+}
+
+.downloadProgress .deleteAttachment {
+  display: block;
+  float: right;
+  padding: 0;
+  background-color: transparent !important;
+  border: 0 !important;
+  background-image: none;
+  line-height:inherit;
+}
+
+.deleteAttachment:after {
+  content: '\00D7';
+  display: block;
+  line-height: inherit;
+  /* width: 35px; */
+  text-align: center;
+  color: rgba(0, 0, 0, .3);
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.downloadProgress .wrapper.success {
+  color:green;
+}
+.downloadProgress .wrapper.error {
+  color:red;
+}
+
+.downloadProgress .error .progress { display:none; }
+.downloadProgress .success .progress { display:none; }
