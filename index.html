@@ -7,12 +7,20 @@
     <title>AeroSentinel Flight Viewer</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- CesiumJS Library -->
+<link href="https://cesium.com/downloads/cesiumjs/releases/1.96/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+<script src="https://cesium.com/downloads/cesiumjs/releases/1.96/Build/Cesium/Cesium.js"></script>
+<!-- Chart.js Library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- jsPDF Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
 </head>
 
 
 
 <body>
-
+    <div id="signInButton"></div> <!-- Placeholder for Google Sign-In Button -->
 
     <div class="container">
         <!-- Title Area START -->
@@ -24,14 +32,17 @@
 
         <!-- Flight Card Area START -->
         <div class="Flight-Card-Area">
-            <h3 style="margin: 0%; max-width:50%; text-align:center; left:25%">Flight Card</h3>
             <div class="flight-card">
-                <p class="flight-card-text">Rocket: AeroSentinel</p>
-                <p class="flight-card-text">Motor: Cesaroni 06000</p>
-                <p class="flight-card-text">Flyer: Yassine Dehhani</p>
-                <p class="flight-card-text">Flight Date: ...</p>
-                <p class="flight-card-text">Location: ...</p>
-                <p class="flight-card-text">Flight Computer: ...</p>
+                <p class="customfontblack"></p>
+            <h4 class="customfont">Flight Card</h4>
+            <p class="customfontblack"></p>
+
+                <p class="customfontblack"><b>Rocket:</b> - </p>
+                <p class="customfontblack"><b>Motor:</b> - </p>
+                <p class="customfontblack"><b>Flyer:</b> - </p>
+                <p class="customfontblack"><b>Flight Date:</b> - </p>
+                <p class="customfontblack"><b>Location:</b> - </p>
+                <p class="customfontblack"><b>Flight Computer:</b> - </p>
             </div>
         </div>
         <!-- Flight Card Area END -->
@@ -40,8 +51,9 @@
         <!-- Trajectory Viewer Area START -->
         <div class="Trajectory-Viewer-Area">
             <div class="viewer" id="earthTrajectory">
-                <h2 class="customfont">Google Earth Trajectory</h2>
-                <!-- Google Earth Trajectory Viewer -->
+                <h2 class="customfont">3D Trajectory Viewer</h2>
+                <!-- Cesium Viewer Container -->
+                <div id="cesiumContainer" style="width: 100%; height: 500px;"></div>
             </div>
         </div>
         <!-- Trajectory Viewer Area END -->
@@ -60,17 +72,13 @@
         <!-- Current Data Area START -->
         <div class="Current-Data-Area">
             <div class="current-data">
-                <h3>Current Data</h3>
-                <p>Timestamp: 0.000 s</p>
-                <p>Roll: 0.0° | Pitch: 0.0° | Yaw: 0.0°</p>
-                <p>Altitude (GPS): 0.00m</p>
-                <p>Velocity (GPS): 0.00 m/s</p>
-                <p>Acceleration: 0.00 G</p>
-                <!-- Remove the existing Flight Events line -->
-                <p>Flight Events: TAKEOFF</p>
-        
-                <!-- Add the Flight Events Container here -->
-                <!-- <div id="flightEventsContainer" class="flight-events-container"></div> -->
+                <h2 class="customfont">Current Data</h2>
+                <p class="customfontblack">Timestamp: 0.000 s</p>
+                <p class="customfontblack">Roll: 0.0° | Pitch: 0.0° | Yaw: 0.0°</p>
+                <p class="customfontblack">Altitude (GPS): 0.00m</p>
+                <p class="customfontblack">Velocity (GPS): 0.00 m/s</p>
+                <p class="customfontblack">Acceleration: 0.00 G</p>
+                <p class="customfontblack">Flight Events: - </p>
             </div>
         </div>
         <!-- Current Data Area END -->
@@ -81,10 +89,9 @@
             <div style="width:auto;">
                 <div class="uploadContainer">
                     <div class="uploadDropzone">
-                        <i style="color: white;" class="fa fa-cloud-upload fa-3x"></i>
-                        <!-- <h5>Drag files here to upload</h5> -->
-                        <p class="customfont"> <button type="button" class="link btnUpload"><b>browse</b></button> to
-                            choose files.</p>
+                        <i style="color: white;" class="fa fa-cloud-upload fa-2x"></i>
+                        <p class="customfontwhite"> <button type="button" class="link btnUpload"><b>Browse</b></button> <br> <br>
+                            to choose files.</p>
                     </div>
                     <div class="alert uploadMessage" style="display:none;"></div>
                     <div id="progressContainer" class="uploadProgress"></div>
@@ -99,8 +106,8 @@
             <div style="width:auto;">
                 <div class="downloadContainer">
                     <div class="downloadDropzone">
-                        <i style="color: white;" class="fa fa-cloud-download fa-3x"></i>
-                        <p class="customfont"> <button type="button" class="link btndownload"><b>Download</b></button>
+                        <i style="color: white;" class="fa fa-cloud-download fa-2x"></i>
+                        <p class="customfontwhite"> <button type="button" class="link btndownload"><b>Download</b></button> <br> <br>
                             plotted data.</p>
                     </div>
                     <div class="alert downloadMessage" style="display:none;"></div>
@@ -116,7 +123,7 @@
             <div class="timeline-container">
                 <div class="timeline">
                     <div class="controls">
-                        <button id="rewindButton">⏪</button>
+                        <button id="rewindButton" class="btn"><i class="fa fa-backward"></i></button>
                         <button id="playPauseButton" class="btn"><i class="fa fa-play"></i></button>
                     </div>
                     <div class="ruler-container">
